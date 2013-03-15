@@ -17,6 +17,20 @@ Vagrant::Config.run do |config|
       chef.add_role "base"
       chef.add_recipe "sdvm_apache2"
       chef.add_recipe "php"
+      chef.add_recipe "mysql::server"
+      chef.add_recipe "mysql::client"
+      # chef.add_recipe "php::module_mysql"
+
+      # Configure mysql passwords
+      chef.json = {
+        :mysql => {
+          :server_root_password => "secret0",
+          :server_repl_password => "secret0",
+          :server_debian_password => "secret0" 
+          },
+        :mysql_password => "secret0"
+      }
+
     end
 
 end
